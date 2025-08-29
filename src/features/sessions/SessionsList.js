@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '../auth/AuthContext';
+import { fetchUserSessions } from '@/services/sessionService';
 import styles from './SessionsList.module.css';
 
 export default function SessionsList() {
@@ -11,8 +12,14 @@ export default function SessionsList() {
 
   useEffect(() => {
     if (user) {
+      console.log('User authenticated:', {
+        uid: user.uid,
+        email: user.email,
+        isAnonymous: user.isAnonymous
+      });
       fetchSessions();
     } else {
+      console.log('No user authenticated');
       setSessions([]);
       setLoading(false);
     }
@@ -20,20 +27,18 @@ export default function SessionsList() {
 
   const fetchSessions = async () => {
     try {
-      const response = await fetch('/api/sessions', {
-        headers: {
-          'x-user-id': user.uid,
-        },
-      });
+      if (!user?.uid) {
+        console.error('No user or user.uid available');
+        return;
+      }
 
-      if (!response.ok) throw new Error('Kunne ikke hente økter');
-
-      const data = await response.json();
+      const data = await fetchUserSessions(user.uid);
       setSessions(data.sort((a, b) => new Date(a.date) - new Date(b.date)));
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching sessions:', error);
+      console.error('Error fetching sessions:', error.message);
       setLoading(false);
+      // You could also set an error state here to show to the user
     }
   };
 
