@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--color-background-alt);
+}
+
+.button_and_link_container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
