@@ -1,12 +1,22 @@
 .main {
-  min-height: 100vh;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+	color: var(--color-gray-400);
+	min-height: 100vh;
+	padding: 20px;
+	max-width: var(--container-lg);
+	margin: 0 auto;
+	text-align: center;
 }
 
-.hero {  
-  font-size: 10rem;  
+.hero {
+	font-size: 10rem;
 }
 
+@media screen and (max-width: 400px) {
+	.main h1 {
+		font-size: var(--font-size-2xl);
+	}
+
+	.hero {
+		font-size: 4rem;
+	}
+}
