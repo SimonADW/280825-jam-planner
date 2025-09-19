@@ -10,6 +10,16 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+   // DEV: Mock user in development
+  if (process.env.NODE_ENV === 'development') {
+    const mockUser = { uid: 'dev-user', email: 'dev@example.com' };
+    return (
+      <AuthContext.Provider value={{ user: mockUser, loading: false }}>
+        {children}
+      </AuthContext.Provider>
+    );
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);

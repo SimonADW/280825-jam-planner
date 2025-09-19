@@ -1,0 +1,14 @@
+.footer {
+	text-align: center;
+	padding: 1rem;
+	font-size: var(--font-size-lg);
+	font-weight: var(--font-weight-medium);
+}
+
+.footer span {
+	background: linear-gradient(to left, rgb(223, 173, 33), rgb(138, 92, 17));
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;	
+	
+}

@@ -121,7 +121,7 @@
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #bb9d43;
+    --color-primary: #e4833a;
     --color-primary-dark: #e1ccb3;
     --color-primary-light: #A56336;
     
